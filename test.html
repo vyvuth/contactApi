@@ -1,0 +1,42 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="row">
+       
+    </div>
+<script>
+    const Row = document.querySelector(".row")
+    let arr = []
+
+    async function FetchAPI(){
+        try{
+            const res = await fetch("http://localhost:3000/contact")
+            const data = await res.json()
+            console.log(data)
+
+            arr = data
+            arr.forEach((e)=>{
+                Row.innerHTML +=` 
+        <h2>${e.id}</h2>
+        <h2>${e.name}</h2>
+        <h2>${e.phone}</h2>
+        <h2>${e.telegram}</h2>
+        <h2>${e.email}</h2>
+        <h2>${e.fb}</h2>
+        <h2>${e.tiktok}</h2>`
+            })
+
+        }catch(error){
+            console.log("API not found!!", error);
+            
+        }
+        
+    }
+    FetchAPI()
+</script>
+</body>
+</html>
